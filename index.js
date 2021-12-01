@@ -1,47 +1,44 @@
-let firstname = "Davidson",
-  lastname = "Habeeb",
-  age = 20;
+const path = require("path");
+const fs = require("fs");
 
-console.log(`my name is ${firstname} ${lastname} and i am ${age} years old`);
+let fileOne = path.join(__dirname, 'fileThree');
 
-let data = [
-    { name: "Davidson" },
-    { name: "Daniel" },
-    { name: "Slyvia" }
-];
+fs.writeFile(fileOne, 'I am davidson', (err)=>{
+   if (err) throw err;
+   console.log(  );
+});
 
-function areaTriangle(base, height) {
-  return {
-    area: 0.5 * base * height,
-  };
-}
+fs.rmdir('fileThree', (err)=>{
+   if (err) {
+      throw err;
+   }
+   console.log('a folder has been deleted');
+})
+let projectFolder = 'project';
+fs.mkdir(projectFolder, (err) => {
+  if (err) throw err;
+  let var1 = path.join(__dirname,  `${projectFolder}/index.txt`);
+  fs.writeFile(var1, "Js is awesome", (err) => {
+    if (err) throw err;
 
-/**
- *
- * @param {Number} yearOfBirth calculating year of birth of a person
- * @returns
- */
+    console.log("task carried out successfully");
+  });
 
-function getAge(yearOfBirth) {
-  let currentYear = new Date().getFullYear();
-
-  return {
-    value: currentYear - yearOfBirth,
-  };
-}
+});
 
 
-function areaOfTriangle(base, height) {
-  return {
-    value: (1 / 2) * base * height,
-  };
-}
-module.exports = {
-  areaTriangle,
-  areaOfTriangle: areaOfTriangle,
-  data,
-  getAge,
-};
+
+let var1 = path.join(__dirname,  'something/project');
+fs.mkdir(var1, (err) => {
+  if (err) throw err;
+  
+  fs.writeFile(var1 + 'filetwo.txt', "Js is awesome", (err) => {
+    if (err) throw err;
+
+    console.log("task carried out successfully");
+  });
+
+});
 
 
 
