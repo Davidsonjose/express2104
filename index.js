@@ -1,142 +1,44 @@
-const path = require("path");
-const fs = require("fs");
-const { resolve } = require("path/posix");
-const { rejects } = require("assert");
+const http = require('http');
+const path = require('path');
+const fs = require('fs');
 
-let fileOne = path.join(__dirname, 'fileThree');
+console.log(http.STATUS_CODES);
 
-fs.writeFile(fileOne, 'I am davidson', (err)=>{
-   if (err) throw err;
-   console.log(  );
-});
-
-fs.rmdir('fileThree', (err)=>{
-   if (err) {
-      throw err;
+server = http.createServer((req, res)=>{
+   switch (req.url) {
+      case '/':
+         let dataOne = path.join(__dirname, 'views/index.html');
+         let fileOne =  fs.readFileSync(dataOne, 'utf-8');
+         res.writeHead(201,{"content-type": "text/html"});
+         res.write(fileOne);
+         res.end();
+         break;
+      case '/about-us':
+         let dataTwo = path.join(__dirname, 'views/about.html');
+         let fileTwo =  fs.readFileSync(dataTwo, 'utf-8');
+         res.writeHead(201,{"content-type": "text/html"});
+         res.write(fileTwo);
+         res.end();
+         break;
+   
+      case '/contact':
+         let dataThree = path.join(__dirname, 'views/contact.html');
+         let fileThree =  fs.readFileSync(dataThree, 'utf-8');
+         res.writeHead(201,{"content-type": "text/html"});
+         res.write(fileThree);
+         res.end();
+         break;
+   
+      default:
+         res.writeHead(404,{"content-type": "text/html"});
+         res.write(`<h1 style="text-align: center; padding-top: 20%">The route you requested ${req.url} was not found</h1>`);
+         res.end();
+         break;
    }
-   console.log('a folder has been deleted');
-})
-let projectFolder = 'project';
-fs.mkdir(projectFolder, (err) => {
-  if (err) throw err;
-  let var1 = path.join(__dirname,  `${projectFolder}/index.txt`);
-  fs.writeFile(var1, "Js is awesome", (err) => {
-    if (err) throw err;
-
-    console.log("task carried out successfully");
-  });
-
 });
 
 
 
-let var1 = path.join(__dirname,  'something/server');
-fs.mkdir(var1, (err) => {
-  if (err) throw err;
-  
-  fs.writeFile(var1 + '/index.html', "Js is awesome", (err) => {
-    if (err) throw err;
 
-    console.log("task carried out successfully");
-  });
-
-});
-
-
-
-let dataOne = path.join(__dirname, 'project/index.txt');
-fs.writeFile(dataOne, 'Whatsapp bbabay', (err)=>{
-   if (err) return err;
-   console.log('A new file has been created and written to');
-});
-
-const util = require('util');
-
-
-
-const recordVideoOne = new Promise((resolve, reject)=>{
-   resolve('Video one recorder')
-});
-const recordVideoTwo = new Promise((resolve, reject)=>{
-   resolve('Video two recorder')
-});
-const recordVideoThree = new Promise((resolve, reject)=>{
-   resolve('Video three recorder')
-});
-
-Promise.all([
-   recordVideoOne,
-   recordVideoTwo,
-   recordVideoThree
-]).then((message)=>{
-   // console.log(message);
-   message.map((name)=>{
-      console.log(name);
-   })
-})
-
-let dataOn = path.join(__dirname, 'project/inde.txt');
-fs.writeFile(dataOn, 'whatsuppppp', (err) =>{
-   if (err) return err;
-   console.log('A new file has been created and overwritten to');
-});
-
-console.log('e make sense');
-
-
-var read = util.promisify(fs.readFile);
-let data = 'utf-8';
-
-
-Promise .all([
-   read('data1.txt', data),
-   read('data2.txt', data),
-   read('data3.txt', data)
-]).then(data=>{
-   console.log(data);
-   // const [data1, data2, data3] = data;
-   // console.log(data1.toString);
-   // console.log(data2.toString);
-   // console.log(data3.toString);
-});
-
-name();
-
-setTimeout(() => {
-   console.log('lets see things');
-}, 3000);
-
-console.log('the end');
-
-
-function loginUser(email, password, callback) {
-   setTimeout(() => {
-      callback({
-         userEmail: email,
-      })
-   }, 4000)
-}
-function videoDetails(video, callback) {
-   setTimeout(() => {
-      callback({title: 'We just dey look'})
-   }, 2000);
-}
-
-function getVideos(email, callback) {
-   setTimeout(() => {
-      callback(["Video1", "video2", "video3"]);
-   },  1000);
-}
-
-const user = loginUser('davidsonj@gmail.com', '12345', (user)=>{
-   console.log(user);
-   getVideos(user.userEmail, (videos)=>{
-      console.log(videos);
-      videoDetails(videos[0], (title)=>{
-         console.log(title);
-      })
-   })
-});
-
-
-console.log('The End');
+const PORT = 5000;
+server.listen(PORT, console.log(`App is running on localhost port ${PORT}`));
