@@ -4,6 +4,9 @@ const fs = require('fs');
 
 console.log(http.STATUS_CODES);
 
+
+
+
 server = http.createServer((req, res)=>{
    switch (req.url) {
       case '/':
@@ -28,7 +31,6 @@ server = http.createServer((req, res)=>{
          res.write(fileThree);
          res.end();
          break;
-   
       default:
          res.writeHead(404,{"content-type": "text/html"});
          res.write(`<h1 style="text-align: center; padding-top: 20%">The route you requested ${req.url} was not found</h1>`);
