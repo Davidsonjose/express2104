@@ -4,17 +4,21 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <title>Home Page</title>
   </head>
   <body>
     <div>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/about-us">About</a></li>
-        <li><a href="/contact">Contact</a></li>
+      <ul class="nav justify-content-center bg-light   p-3">
+        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+        <li class="nav-item"><a class="nav-link" href="/products">Product</a></li>
       </ul>
     </div>
-    <h1>Welcome to our Dashboard</h1>
+
+
+    <h1 class="mt-3">Welcome to our Dashboard</h1>
 
     <p>
       Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illum quam
@@ -23,8 +27,9 @@
     </p>
     <div class="post"></div>
     <div id="main"></div>
+
   </body>
-  <script>
+  <!-- <script>
     fetch("https://jsonplaceholder.typicode.com/posts/")
       .then((response) => response.json())
       .then((data) => {
@@ -55,5 +60,5 @@
   //   console.log(a);
   //   a +=  " is";
   // console.log(a);
-  </script>
+  </script> -->
 </html>

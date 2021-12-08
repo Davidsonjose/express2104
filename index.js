@@ -1,60 +1,45 @@
-const http = require('http');
-const path = require('path');
-const fs = require('fs');
-const {data} = require('./test');
+const express = require("express");
+const http = require("http");
+const path = require("path");
+const {data} = require("./test");
 
-console.log(http.STATUS_CODES);
+//initialized app
+const app = express();
 
+app.use(express.static(path.join(__dirname, 'public')));
 
+let index1 = path.join(__dirname, "views/index.html");
+let index3 = path.join(__dirname, "views/about.html");
+let index2 = path.join(__dirname, "views/contact.html");
+let index4 = path.join(__dirname, "views/post.html");
 
-
-
-
-
-
-
-
-
-server = http.createServer((req, res)=>{
-   switch (req.url) {
-      case '/':
-         let dataOne = path.join(__dirname, 'views/index.html');
-         let fileOne =  fs.readFileSync(dataOne, 'utf-8');
-         res.writeHead(201,{"content-type": "text/html"});
-         res.write(fileOne);
-         res.end();
-         break;
-      case '/about-us':
-         let dataTwo = path.join(__dirname, 'views/about.html');
-         let fileTwo =  fs.readFileSync(dataTwo, 'utf-8');
-         res.writeHead(201,{"content-type": "text/html"});
-         res.write(fileTwo);
-         res.end();
-         break;
-   
-      case '/contact':
-         let dataThree = path.join(__dirname, 'views/contact.html');
-         let fileThree =  fs.readFileSync(dataThree, 'utf-8');
-         res.writeHead(201,{"content-type": "text/html"});
-         res.write(fileThree);
-         res.end();
-         break;
-      case '/api/students':
-         res.writeHead(201,{"content-type": "application/json"});
-         res.write(JSON.stringify(data));
-         res.end();
-         break;
-
-      default:
-         res.writeHead(404,{"content-type": "text/html"});
-         res.write(`<h1 style="text-align: center; padding-top: 20%">The route you requested ${req.url} was not found</h1>`);
-         res.end();
-         break;
-   }
+app.get("/", (req, res) => {
+  res.sendFile(index1);
 });
 
+app.get("/about", (req, res) => {
+  res.sendFile(index3);
+});
+
+app.get("/contact", (req, res) => {
+  res.sendFile(index2);
+});
+
+app.get("/products", (req, res)=>{
+   res.sendFile(index4)
+})
+
+app.get("/api/names", (req, res) =>{
+   res.status(201).json({
+      success: 'success',
+      data,
+   })
+})
 
 
 
-const PORT = 5000;
-server.listen(PORT, console.log(`App is running on localhost port ${PORT}`));
+const PORT = process.env.PORT || 1100;
+
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost${PORT}`);
+});
