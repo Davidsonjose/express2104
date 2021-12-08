@@ -1,8 +1,16 @@
 const http = require('http');
 const path = require('path');
 const fs = require('fs');
+const {data} = require('./test');
 
 console.log(http.STATUS_CODES);
+
+
+
+
+
+
+
 
 
 
@@ -31,6 +39,12 @@ server = http.createServer((req, res)=>{
          res.write(fileThree);
          res.end();
          break;
+      case '/api/students':
+         res.writeHead(201,{"content-type": "application/json"});
+         res.write(JSON.stringify(data));
+         res.end();
+         break;
+
       default:
          res.writeHead(404,{"content-type": "text/html"});
          res.write(`<h1 style="text-align: center; padding-top: 20%">The route you requested ${req.url} was not found</h1>`);
