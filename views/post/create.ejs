@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/head.ejs') %>
+  </head>
+  <body>
+    <!-- nav start -->
+    <%- include('../partials/nav.ejs') %>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css" />
+
+    <!-- nav-end -->
+    <div class="container bg-light mt-3">
+      <h2 class="display-4 text-center">New Posts 🔌</h2>
+      <div class="mt-4 bg-light d-flex justify-content-center">
+        <form
+          action="/product/post"
+          method="POST"
+          class="w-50 justify-content-center mt-5"
+          enctype="multipart/form-data"
+        >
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Category"
+              name="category"
+            />
+          </div>
+          <div class="form-group">
+            <input type="file" class="form-control-file" name="image" />
+          </div>
+          <div class="form-group">
+            <textarea
+              id=""
+              cols="72"
+              rows="5"
+              placeholder="description"
+              name="description"
+            ></textarea>
+          </div>
+          <div class="mb-5">
+            <input
+              type="submit"
+              id=""
+              value="submit"
+              class="btn btn-primary btn-block"
+            />
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
