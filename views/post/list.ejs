@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/head.ejs') %>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/duotone.css" integrity="sha384-R3QzTxyukP03CMqKFe0ssp5wUvBPEyy9ZspCB+Y01fEjhMwcXixTyeot+S40+AjZ" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/fontawesome.css" integrity="sha384-eHoocPgXsiuZh+Yy6+7DsKAerLXyJmu2Hadh4QYyt+8v86geixVYwFqUvMU8X90l" crossorigin="anonymous"/>
+    <style>
+        .image-container{
+            position: relative;
+            overflow: hidden;
+        }
+        .cart-btn{
+            position: absolute;
+            color: blue;
+            font-size: 30px;
+        }
+        .card1{
+            border-color: transparent;
+            transition: all 1s linear;
+        }
+        .card1 :hover{
+            /* transform: scale(2); */
+            /* border: 0.04rem solid rgba(0, 0, 0, 0.2); */
+            box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+  </head>
+  <body>
+      <% const data2 = [
+  {
+    Category: "Phone",
+    description: "iphone Xr -black",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBi3gEdY_bALwnYHzXYRJmGtiV8L5Z-T7GDQ&usqp=CAU",
+  },
+  {
+    Category: "Car",
+    description: "Toyota Car -red",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThcw7wJ37J0PFLgzXkC1eWZawQMsKVpb4-Rg&usqp=CAU",
+  },
+  {
+    Category: "Clothes",
+    description: "Round neck -black",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCNvc48LKM9ysM6IV5bEzb3iGn2v8bGZsTkA&usqp=CAU",
+
+  },
+      ]; %>
+      <%#- console.log(data2) %> 
+      
+    <!-- nav start -->
+    <%- include('../partials/nav.ejs') %>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css" />
+    <!-- nav-end -->
+
+
+
+    <h2 class="display-4 text-center">Products 🔌</h2>
+    <% allPost.map((data)=>{ %>
+        <div class="">
+            <h2><%- data.category %> </h2>
+            <img src=<%- data.image %> style="max-width: 250px; " >
+            <p><%- data.description %></p>
+            <button class="btn btn-outline-dark" >See more</button>
+        </div>
+
+    <%  }) %> 
+  </body>
+</html>

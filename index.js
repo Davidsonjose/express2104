@@ -23,10 +23,12 @@ app.use("/upload", express.static(path.join(__dirname, "upload")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+
 mongoose
-  .connect("mongodb://localhost:27017/Eccomerce", {
-    UseNewUrlParser: true,
-  })
+  .connect("mongodb://localhost:27017/Ecommerce",{
+    useNewUrlParser: true
+  }
+  )
   .then(() => {
     console.log("Database Connected");
   })
@@ -34,6 +36,7 @@ mongoose
     console.log(err);
   });
 
+  
 //initialized route middleware
 app.use("/", homeRoute);
 app.use("/product", productRoute);
